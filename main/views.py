@@ -2,8 +2,8 @@ from django.shortcuts import render
 def show_main(request):
     context = {
         'app' : 'Moory Thrift',
-        'name': 'Pak Bepe',
-        'class': 'PBP E'
+        'name': 'Felita Zahra D',
+        'class': 'PBP C'
     }
 
     return render(request, "main.html", context)
