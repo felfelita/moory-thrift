@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
+<h1>Moory Thrift</h1>
+
+<h5>App name: </h5>
+<p>{{ app }}<p>
+
+<h5>Name: </h5>
+<p>{{ name }}<p>
+  
+<h5>Class: </h5>
+<p>{{ class }}<p>
+
 {% if not thrift_entries %}
 <p>Belum ada data thrift pada Moory Thrift.</p>
 {% else %}
@@ -33,14 +44,6 @@
 </a>
 {% endblock content %}
 
-<h1>Moory Thrift</h1>
-
-<h5>App name: </h5>
-<p>{{ app }}<p>
-<h5>Name: </h5>
-<p>{{ name }}<p>
-<h5>Class: </h5>
-<p>{{ class }}<p>
 
 
     
