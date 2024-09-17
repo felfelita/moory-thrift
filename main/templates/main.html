@@ -1,3 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if not thrift_entries %}
+<p>Belum ada data thrift pada Moory Thrift.</p>
+{% else %}
+<table>
+  <tr>
+    <th>Thrift Name</th>
+    <th>time</th>
+    <th>price</th>
+    <th>description </th>
+    <th>condition </th>
+  </tr>
+
+  {% comment %} Berikut cara memperlihatkan data thrift di bawah baris ini 
+  {% endcomment %} 
+  {% for thrift_entry in thrift_entries %}
+  <tr>
+    <td>{{thrift_entry.name}}</td>
+    <td>{{thrift_entry.time}}</td>
+    <td>{{thrift_entry.price}}</td>
+    <td>{{thrift_entry.description}}</td>
+    <td>{{thrift_entry.condition}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<br />
+
+<a href="{% url 'main:create_thrift_entry' %}">
+  <button>Add New Thrift Entry</button>
+</a>
+{% endblock content %}
+
 <h1>Moory Thrift</h1>
 
 <h5>App name: </h5>
@@ -6,5 +41,6 @@
 <p>{{ name }}<p>
 <h5>Class: </h5>
 <p>{{ class }}<p>
+
 
     
