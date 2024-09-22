@@ -56,12 +56,12 @@ csrf_token berfungsi untuk melindungi aplikasi dari serangan CSRF (Cross-Site Re
 
 #  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 1. **Membuat forms.py:** Tambahkan file `forms.py` ke direktori `main` dan buat form yang didasarkan pada model `Product`.
-2. **Implementasi fungsi create_product di views.py:**
+2. **Implementasi fungsi create_thrift_entry di views.py:**
    - Import form yang sudah dibuat beserta `redirect`.
-   - Tambahkan fungsi `create_product` untuk memvalidasi input dan menyimpan data dari form tersebut.
+   - Tambahkan fungsi `create_thrift_entry` untuk memvalidasi input dan menyimpan data dari form tersebut.
    - Pada fungsi `show_main`, tambahkan `Product.objects.all()` untuk mengambil semua data `Product` dari database dan kirimkan ke template melalui context.
-3. **Routing URL:** Di `urls.py`, import fungsi `create_product` dan tambahkan path untuk mengaksesnya.
-4. **Template HTML (create_product.html):** Buat file HTML di `main/templates` yang berisi form dengan metode POST, tambahkan {% csrf_token %}, serta tombol untuk submit.
+3. **Routing URL:** Di `urls.py`, import fungsi `create_thrift_entry` dan tambahkan path untuk mengaksesnya.
+4. **Template HTML (create_thrift_entry.html):** Buat file HTML di `main/templates` yang berisi form dengan metode POST, tambahkan {% csrf_token %}, serta tombol untuk submit.
 5. **Fungsi untuk Mengembalikan Data dalam Format JSON dan XML:** Di `views.py`, buat empat fungsi: `show_xml`, `show_json`, `show_xml_by_id`, dan `show_json_by_id` untuk menampilkan data `Product` dalam format JSON dan XML.
 6. **Routing untuk JSON dan XML:** Tambahkan path di `urls.py` untuk menampilkan data dalam format JSON dan XML.
 7. **Push ke PWS dan GitHub:** Lakukan push perubahan ke repositori PWS dan GitHub.
@@ -78,3 +78,6 @@ csrf_token berfungsi untuk melindungi aplikasi dari serangan CSRF (Cross-Site Re
 # JSON by ID
 <img width="1470" alt="Screen Shot 2024-09-18 at 08 56 47" src="https://github.com/user-attachments/assets/e63ae4c2-a5f4-4900-96c4-1a17e5d194ca">
 
+# Tugas 4
+
+# Apa perbedaan antara HttpResponseRedirect() dan redirect()
