@@ -59,7 +59,7 @@ csrf_token berfungsi untuk melindungi aplikasi dari serangan CSRF (Cross-Site Re
 2. **Implementasi fungsi create_thrift_entry di views.py:**
    - Import form yang sudah dibuat beserta `redirect`.
    - Tambahkan fungsi `create_thrift_entry` untuk memvalidasi input dan menyimpan data dari form tersebut.
-   - Pada fungsi `show_main`, tambahkan `Product.objects.all()` untuk mengambil semua data `Product` dari database dan kirimkan ke template melalui context.
+   - Pada fungsi `show_main`, tambahkan `ThriftEntry.objects.all()` untuk mengambil semua data `Product` dari database dan kirimkan ke template melalui context.
 3. **Routing URL:** Di `urls.py`, import fungsi `create_thrift_entry` dan tambahkan path untuk mengaksesnya.
 4. **Template HTML (create_thrift_entry.html):** Buat file HTML di `main/templates` yang berisi form dengan metode POST, tambahkan {% csrf_token %}, serta tombol untuk submit.
 5. **Fungsi untuk Mengembalikan Data dalam Format JSON dan XML:** Di `views.py`, buat empat fungsi: `show_xml`, `show_json`, `show_xml_by_id`, dan `show_json_by_id` untuk menampilkan data `Product` dalam format JSON dan XML.
