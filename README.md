@@ -81,7 +81,7 @@ csrf_token berfungsi untuk melindungi aplikasi dari serangan CSRF (Cross-Site Re
 # Tugas 4
 
 # Apa perbedaan antara HttpResponseRedirect() dan redirect()
-# HttpResponseRedirect():
+**HttpResponseRedirect()**:
 Manual: Mengarahkan ke URL tertentu sehingga kita harus memberikan URL dalam bentuk string secara manual.
-# redirect():
+**redirect()**:
 Shortcut: Lebih fleksibel. Kita bisa memasukkan URL, nama view, atau objek, dan redirect() otomatis menangani semuanya.
