@@ -85,3 +85,8 @@ csrf_token berfungsi untuk melindungi aplikasi dari serangan CSRF (Cross-Site Re
 Manual: Mengarahkan ke URL tertentu sehingga kita harus memberikan URL dalam bentuk string secara manual.
 **redirect()**:
 Shortcut: Lebih fleksibel. Kita bisa memasukkan URL, nama view, atau objek, dan redirect() otomatis menangani semuanya.
+
+#  Jelaskan cara kerja penghubungan model Product dengan User!
+Dalam Django, untuk menghubungkan model `Product` dengan `User`, Anda dapat menambahkan field `user` sebagai `ForeignKey` di dalam model `Product`, yang memungkinkan setiap produk terhubung ke satu pengguna (User), sementara seorang pengguna dapat memiliki banyak produk. Langkah-langkah implementasinya mencakup: mengimpor model `User` di `models.py`, menambahkan `ForeignKey` di model `Product`, dan memodifikasi fungsi `create_product` di `views.py` untuk menetapkan `product.user` ke `request.user`, sehingga produk terkait dengan pengguna yang membuatnya. Selain itu, fungsi `show_products` perlu diubah untuk menampilkan hanya produk yang dibuat oleh pengguna yang sedang login dengan memfilter query berdasarkan `request.user`. Setelah semua perubahan selesai, jalankan migrasi (`makemigrations` dan `migrate`) untuk memperbarui database. Terakhir, jalankan server untuk memastikan bahwa hanya produk milik pengguna yang login yang ditampilkan di aplikasi. Dengan cara ini, model `Product` akan terhubung otomatis dengan `User` menggunakan `ForeignKey`.
+
+# Perbedaan Authentication dan Authorization dan cara Django mengimplementasinya
