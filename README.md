@@ -90,3 +90,54 @@ Shortcut: Lebih fleksibel. Kita bisa memasukkan URL, nama view, atau objek, dan 
 Dalam Django, untuk menghubungkan model `Product` dengan `User`, Anda dapat menambahkan field `user` sebagai `ForeignKey` di dalam model `Product`, yang memungkinkan setiap produk terhubung ke satu pengguna (User), sementara seorang pengguna dapat memiliki banyak produk. Langkah-langkah implementasinya mencakup: mengimpor model `User` di `models.py`, menambahkan `ForeignKey` di model `Product`, dan memodifikasi fungsi `create_product` di `views.py` untuk menetapkan `product.user` ke `request.user`, sehingga produk terkait dengan pengguna yang membuatnya. Selain itu, fungsi `show_products` perlu diubah untuk menampilkan hanya produk yang dibuat oleh pengguna yang sedang login dengan memfilter query berdasarkan `request.user`. Setelah semua perubahan selesai, jalankan migrasi (`makemigrations` dan `migrate`) untuk memperbarui database. Terakhir, jalankan server untuk memastikan bahwa hanya produk milik pengguna yang login yang ditampilkan di aplikasi. Dengan cara ini, model `Product` akan terhubung otomatis dengan `User` menggunakan `ForeignKey`.
 
 # Perbedaan Authentication dan Authorization dan cara Django mengimplementasinya
+**Perbedaan Authentication dan Authorization:**
+
+Authentication (Autentikasi): Verifikasi identitas pengguna, seperti login dengan username dan password.
+Authorization (Otorisasi): Menentukan hak akses pengguna setelah mereka berhasil login.
+
+**Yang Dilakukan Saat Pengguna Login:**
+
+Authentication: Memeriksa kredensial (username dan password).
+Authorization: Menentukan hak akses berdasarkan peran pengguna.
+
+**Implementasi**
+Dalam proses autentikasi di Django, saat pengguna login menggunakan authentication view, informasi yang mereka masukkan akan diperiksa apakah cocok dengan data yang ada. Jika verifikasi berhasil, Django akan membuat sesi user yang memungkinkan user mengakses sistem. Sedangkan untuk authorization, Django menggunakan permission classes dan decorators seperti `@login_required`, yang membatasi akses ke suatu *view* hanya bagi pengguna yang telah terautentikasi.
+
+#  Cara Django mengingat pengguna yang telah login, kegunaan lain dari cookies dan keamanan cookies
+Django menggunakan sesi untuk mengingat pengguna yang telah login. Setelah login berhasil, Django membuat sesi dan menyimpan identifier atau session ID sebagai cookie di browser pengguna.
+
+**Pengelolaan Cookie**: Cookie memungkinkan Django mengenali pengguna yang kembali tanpa perlu login ulang, kecuali sesi telah berakhir atau pengguna melakukan logout. Selain otentikasi, cookie juga berguna untuk:
+
+- **Melacak perilaku pengguna**: Cookie dapat menyimpan informasi seperti preferensi dan aktivitas pengguna selama sesi berlangsung.
+- **Menyimpan pengaturan pengguna**: Seperti bahasa pilihan atau tema, sehingga pengalaman pengguna lebih dipersonalisasi.
+
+**Keamanan Cookies:**
+
+Tidak semua cookies aman, dan ada beberapa hal yang perlu diperhatikan:
+Cookies Sesi: Cookies yang digunakan untuk menyimpan sesi biasanya lebih aman karena mereka hanya aktif selama sesi pengguna dan tidak memiliki masa berlaku yang panjang.
+Secure Cookies: Cookies yang ditandai sebagai "Secure" hanya akan dikirim melalui HTTPS, membuatnya lebih aman dari serangan penyadapan.
+HttpOnly Cookies: Cookies yang ditandai sebagai "HttpOnly" tidak dapat diakses melalui JavaScript, sehingga mengurangi risiko serangan XSS (Cross-Site Scripting).
+
+**Risiko Cookies:**
+
+Cookie Pencurian: Jika cookie tidak dikelola dengan benar, penyerang dapat mencuri cookie pengguna dan mendapatkan akses tidak sah.
+Cookie Tidak Terlindungi: Cookies yang tidak menggunakan atribut Secure atau HttpOnly dapat lebih rentan terhadap serangan.
+
+# Mengimplementasikan checklist secara step-by-step
+
+**Membuat Formulir Pendaftaran:**
+- Membuat fungsi `register` di views untuk menampilkan form pendaftaran akun baru.
+- Menyiapkan file HTML agar pengguna dapat mendaftar dengan mengisi informasi yang diperlukan.
+- Menambahkan path di file `urls.py` untuk menghubungkan fungsi `register`.
+
+**Membuat Fungsi Login dan Logout:**
+- Buat fungsi `login` yang memungkinkan pengguna masuk. Saat login berhasil, Django akan menyimpan cookie bernama `last_login` untuk mencatat waktu login terakhir pengguna.
+- Buat fungsi `logout` yang menghapus cookie `last_login` dengan `response.delete_cookie('last_login')` saat pengguna keluar.
+
+**Menampilkan Cookie last_login di Halaman Web:**
+- Tambahkan `last_login: request.COOKIES['last_login']` di views untuk menampilkan cookie `last_login` di halaman web.
+- Tambahkan path URL untuk fungsi login dan logout di `urls.py`.
+- Gunakan decorator `@login_required` pada views untuk memastikan pengguna harus login sebelum mengakses halaman tertentu.
+
+**Menghubungkan Produk dengan Pengguna:**
+- Gunakan `ForeignKey` di `models.py` untuk mengaitkan produk dengan pengguna, kemudian lakukan migrasi untuk menyimpan perubahan.
