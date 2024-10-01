@@ -1,5 +1,5 @@
 from django.urls import path
-from main.views import show_main, create_thrift_entry, show_xml, show_json, show_xml_by_id, show_json_by_id, register, login_user, logout_user, edit_thrift, delete_thrift
+from main.views import show_main, create_thrift_entry, show_xml, show_json, show_xml_by_id, show_json_by_id, register, login_user, logout_user, edit_thrift, delete_thrift, contact_us
 
 
 
@@ -18,4 +18,5 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('edit-thrift/<uuid:id>', edit_thrift, name='edit_thrift'),
     path('delete/<uuid:id>', delete_thrift, name='delete_thrift'), 
+    path('contact/', contact_us, name='contact_us'),
 ]

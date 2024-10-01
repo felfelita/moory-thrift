@@ -103,3 +103,6 @@ def delete_thrift(request, id):
     thrift = ThriftEntry.objects.get(pk = id)
     thrift.delete()
     return HttpResponseRedirect(reverse('main:show_main'))
+
+def contact_us(request):
+    return render(request, "contact_us.html")

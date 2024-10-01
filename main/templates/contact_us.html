@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="relative overflow-x-hidden px-4 md:px-8 pb-8 pt-24 min-h-screen bg-gradient-to-b from-[#2b5e2b] via-yellow-200 to-[#8c5722] flex flex-col">
+<div class="container mx-auto my-8">
+    <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+    <p>If you have any questions or comments, feel free to reach out to us!</p>
+    <h3 class="text-2xl mt-6">Our Contact Information:</h3>
+    <div class="contact-info mt-4 font-bold">
+        <p>Email: <a href="mailto:support@moorythrift.com" class="text-blue-700 hover:underline font-semibold">support@moorythrift.com</a></p>
+        <p>Phone: <a href="tel:+62123456789" class="text-blue-700 hover:underline font-semibold">+62 123 456 789</a></p>
+        <p class = "font-semibold">Address: Jl. Jakarta, Indonesia </p>
+    </div>
+</div>
+</div>
+{% endblock content %}
