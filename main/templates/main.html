@@ -1,54 +1,66 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Moory Thrift</title>
+{% endblock meta %}
+
 {% block content %}
-<h1>Moory Thrift</h1>
+{% include 'navbar.html' %}
+<div class="relative overflow-x-hidden px-4 md:px-8 pb-8 pt-24 min-h-screen bg-gradient-to-b from-[#2b5e2b] via-yellow-200 to-[#8c5722] flex flex-col">
 
-<h5>App name: </h5>
-<p>{{ app }}<p>
+  <!-- Welcome Message -->
+  <div class="px-3 mb-4">
+    <div class="flex justify-center items-center py-4">
+      <h1 class="text-4xl font-bold text-[#FFD700]">
+        Selamat datang, {{ name }}!
+      </h1>
+    </div>
+  </div>
 
-<h5>Name: </h5>
-<p>{{ name }}<p>
-  
-<h5>Class: </h5>
-<p>{{ class }}<p>
+  <!-- Header Information Cards -->
+  <div class="p-2 mb-6 relative">
+    <div class="relative grid grid-cols-1 z-30 md:grid-cols-3 gap-8">
+      {% include "card_info.html" with title='Name' value=name %}
+      {% include "card_info.html" with title='Class' value=class %}
+      {% include "card_info.html" with title='What We Do?' value=message %}
+    </div>
 
-{% if not thrift_entries %}
-<p>Belum ada data thrift pada Moory Thrift.</p>
-{% else %}
-<table>
-  <tr>
-    <th>Thrift Name</th>
-    <th>time</th>
-    <th>price</th>
-    <th>description </th>
-    <th>condition </th>
-  </tr>
+    <!-- Decorative Lines -->
+    <div class="w-full px-6 absolute top-[44px] left-0 z-20 hidden md:flex">
+      <div class="w-full min-h-4 bg-black shadow-md rounded-full"></div>
+    </div>
+    <div class="h-full w-full py-6 absolute top-0 left-0 z-20 md:hidden flex">
+      <div class="h-full min-w-4 bg-black mx-auto rounded-full shadow-md"></div>
+    </div>
+  </div>
 
-  {% comment %} Berikut cara memperlihatkan data thrift di bawah baris ini 
-  {% endcomment %} 
-  {% for thrift_entry in thrift_entries %}
-  <tr>
-    <td>{{thrift_entry.name}}</td>
-    <td>{{thrift_entry.time}}</td>
-    <td>{{thrift_entry.price}}</td>
-    <td>{{thrift_entry.description}}</td>
-    <td>{{thrift_entry.condition}}</td>
-  </tr>
-  {% endfor %}
-</table>
-{% endif %}
+  <!-- Last Login Information -->
+  <div class="px-3 mb-4">
+    <div class="flex rounded-lg items-center bg-gradient-to-r from-[#456e4d] via-gray-500 to-black shadow-lg py-2 px-6 w-fit">
+      <h1 class="text-[#FFD700] text-center text-lg font-bold">Last Login: {{last_login}}</h1>
+    </div>
+  </div>
 
-<br />
+  <!-- Display Thrift Entries or Empty State -->
+  {% if not thrift_entries %}
+  <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+    <img src="{% static 'image/empty1.png' %}" alt="Empty" class="w-64 h-64 mb-4 opacity-80 hover:opacity-100 transition-opacity duration-300"/>
+    <p class="text-center text-black mt-4 font-semibold text-xl">🙁 No products are available to display 🙁</p>
+  </div>
+  {% else %}
+  <!-- Your Goods Here Message -->
+  <div class="flex justify-center items-center mb-6">
+    <h1 class="text-3xl font-bold text-gray-800">
+      Your Goods Here!!!
+    </h1>
+  </div>
 
-<a href="{% url 'main:create_thrift_entry' %}">
-  <button>Add New Thrift Entry</button>
-</a>
-
-<a href="{% url 'main:logout' %}">
-  <button>Logout</button>
-</a>
-<h5>Sesi terakhir login: {{ last_login }}</h5>
+  <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full">
+    {% for thrift_entry in thrift_entries %}
+      {% include 'card_product.html' with thrift_entry=thrift_entry %}
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
 {% endblock content %}
-
-
-
-    

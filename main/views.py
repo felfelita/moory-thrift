@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
 from django.core import serializers
-from django.shortcuts import render, redirect  
+from django.shortcuts import render, redirect, reverse
 from main.forms import ThriftEntryForm
 from main.models import ThriftEntry
 
@@ -18,6 +18,7 @@ def show_main(request):
         'app' : 'Moory Thrift',
         'name': request.user.username,
         'class': 'PBP C',
+        'message' : 'Sell Your Preloved Here!',
         'thrift_entries': thrift_entries,
         'last_login': request.COOKIES['last_login'],
     }
@@ -85,3 +86,20 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_thrift(request, id):
+    thrift = ThriftEntry.objects.get(pk = id)
+
+    form = ThriftEntryForm(request.POST or None, instance=thrift)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_thrift.html", context)
+
+def delete_thrift(request, id):
+    thrift = ThriftEntry.objects.get(pk = id)
+    thrift.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
