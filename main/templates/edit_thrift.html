@@ -6,36 +6,52 @@
 
 {% block content %}
 {% include 'navbar.html' %}
-<div class="flex flex-col min-h-screen bg-gray-100">
-  <div class="container mx-auto px-4 py-8 mt-16 max-w-xl">
-    <h1 class="text-3xl font-bold text-center mb-8 text-black">Edit Thrift Product</h1>
+
+<div class="flex flex-col min-h-screen bg-gradient-to-b from-[#2b5e2b] via-yellow-200 to-[#8c5722]">
+
+    <div class="absolute top-10 left-10 w-32 h-32 bg-yellow-300 rounded-full opacity-70 blur-lg"></div>
+    <div class="absolute top-40 right-20 w-40 h-40 bg-green-400 rounded-full opacity-50 blur-2xl"></div>
   
-    <div class="bg-white rounded-lg p-6 form-style">
+    <div class="absolute bottom-10 left-32 w-24 h-24 bg-red-400 rounded-md opacity-40 rotate-45"></div>
+    <div class="absolute top-60 right-0 w-56 h-56 bg-blue-500 opacity-20 blur-xl rounded-lg"></div>
+  
+  <div class="container mx-auto px-4 py-10 mt-16 max-w-lg">
+    <h1 class="text-4xl font-bold text-center mb-6 text-[#FFD700]">Edit Thrift Product</h1>
+    
+    <div class="bg-gray-300 rounded-lg shadow-lg p-8 form-style border border-black">
       <form method="POST" class="space-y-6">
-          {% csrf_token %}
-          {% for field in form %}
-              <div class="flex flex-col">
-                  <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-gray-700">
-                      {{ field.label }}
-                  </label>
-                  <div class="w-full">
-                      {{ field }}
-                  </div>
-                  {% if field.help_text %}
-                      <p class="mt-1 text-sm text-gray-500">{{ field.help_text }}</p>
-                  {% endif %}
-                  {% for error in field.errors %}
-                      <p class="mt-1 text-sm text-red-600">{{ error }}</p>
-                  {% endfor %}
-              </div>
-          {% endfor %}
-          <div class="flex justify-center mt-6">
-              <button type="submit" class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 transition duration-300 ease-in-out w-full">
-                  Edit Thrift Product
-              </button>
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="flex flex-col">
+            <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-gray-800">
+              {{ field.label }}
+            </label>
+            <div class="w-full">
+              {{ field }}
+            </div>
+            {% if field.help_text %}
+              <p class="mt-1 text-sm text-gray-600">{{ field.help_text }}</p>
+            {% endif %}
+            {% for error in field.errors %}
+              <p class="mt-1 text-sm text-red-600">{{ error }}</p>
+            {% endfor %}
           </div>
+        {% endfor %}
+        
+        <div class="flex justify-center mt-8">
+          <button type="submit" class="bg-[#26402b] hover:bg-[#57825f] text-white font-semibold px-8 py-3 rounded-lg transition duration-300 ease-in-out w-full shadow-md">
+            Edit Thrift Product
+          </button>
+        </div>
       </form>
+    </div>
   </div>
-  </div>
+
+  <footer class="mt-auto py-4 bg-white shadow-md">
+    <div class="container mx-auto text-center text-gray-600">
+      <p>&copy; 2024 Moory Thrift. All rights reserved.</p>
+    </div>
+  </footer>
 </div>
+
 {% endblock %}

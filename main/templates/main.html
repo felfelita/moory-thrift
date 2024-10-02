@@ -42,6 +42,13 @@
     </div>
   </div>
 
+
+  <div class="flex justify-end mb-6">
+      <a href="{% url 'main:create_thrift_entry' %}" class="bg-gradient-to-r from-[#456e4d] via-gray-500 to-black text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+          Add New Thrift Product
+      </a>
+  </div>
+
   <!-- Display Thrift Entries or Empty State -->
   {% if not thrift_entries %}
   <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
