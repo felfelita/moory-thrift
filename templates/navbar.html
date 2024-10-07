@@ -7,7 +7,14 @@
         <div class="flex items-center justify-between h-16">
             <!-- Logo atau Judul -->
             <div class="flex items-center">
-                <h1 class="text-2xl font-bold text-[#FFD700]">Moory Thrift</h1>
+                <h1 class="text-2xl font-bold text-[#FFD700] flex items-center space-x-4">
+                    <span>Moory Thrift</span>
+                </h1>
+            </div>
+
+            <!-- Teks Thrift it Thrively di tengah -->
+            <div class="absolute left-1/2 transform -translate-x-1/2">
+                <span class="text-lg text-[#FFD700] italic font-medium">Thrift it Thrively!</span>
             </div>
 
             <!-- Profil dan Opsi Dropdown untuk Desktop -->
@@ -28,12 +35,12 @@
                             <a href="{% url 'main:create_thrift_entry' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                                 Add New Thrift Product
                             </a>
+                            <a href="{% url 'main:contact_us' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                Contact Us 📞
+                            </a>
                             <a href="{% url 'main:logout' %}" class="block px-4 py-2 text-red-600 hover:bg-gray-100">
                                 Logout
                             </a>
-                            <a href="{% url 'main:contact_us' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                                Contact Us 📞
-                            </a> 
                         </div>
                     </div>
                 {% else %}
@@ -50,7 +57,7 @@
             <!-- Tombol Menu untuk Mobile -->
             <div class="md:hidden flex items-center">
                 <button class="mobile-menu-button">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
@@ -58,22 +65,47 @@
         </div>
     </div>
 
-    
+    <!-- Mobile menu -->
+    <div class="mobile-menu hidden md:hidden px-4 w-full md:max-w-full">
+        <div class="pt-2 pb-3 space-y-1 mx-auto">
+            {% if user.is_authenticated %}
+                <span class="block text-gray-300 px-3 py-2">Welcome, {{ user.username }}</span>
+                <a href="{% url 'main:create_thrift_entry' %}" class="block text-center bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Add New Thrift Product
+                </a>
+                <a href="{% url 'main:contact_us' %}" class="block text-center bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Contact Us 📞
+                </a>
+                <a href="{% url 'main:logout' %}" class="block text-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Logout
+                </a>
+            {% else %}
+                <a href="{% url 'main:login' %}" class="block text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 mb-2">
+                    Login
+                </a>
+                <a href="{% url 'main:register' %}" class="block text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Register
+                </a>
+            {% endif %}
+        </div>
+    </div>
 
     <!-- Script untuk toggle dropdown dan mobile menu -->
     <script>
         // Toggle mobile menu
-        const btn = document.querySelector("button.mobile-menu-button");
-        const menu = document.querySelector(".mobile-menu");
-        btn.addEventListener("click", () => {
-            menu.classList.toggle("hidden");
+        const mobileMenuBtn = document.querySelector("button.mobile-menu-button");
+        const mobileMenu = document.querySelector(".mobile-menu");
+
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
         });
 
         // Toggle dropdown menu untuk profile
         const profileMenuBtn = document.getElementById('profile-menu');
         const dropdownMenu = document.getElementById('dropdown-menu');
 
-        profileMenuBtn.addEventListener('click', () => {
+        profileMenuBtn.addEventListener('click', (event) => {
+            event.stopPropagation(); // Mencegah event click ini menutup dropdown
             dropdownMenu.classList.toggle('hidden');
         });
 
