@@ -141,3 +141,64 @@ Cookie Tidak Terlindungi: Cookies yang tidak menggunakan atribut Secure atau Htt
 
 **Menghubungkan Produk dengan Pengguna:**
 - Gunakan `ForeignKey` di `models.py` untuk mengaitkan produk dengan pengguna, kemudian lakukan migrasi untuk menyimpan perubahan.
+
+# Tugas 5
+
+# Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Prioritas pengambilan CSS selector diatur oleh konsep kaskade CSS. Urutannya dari tertinggi ke terendah adalah: **inline style, selektor ID, selektor klas/pseudo-klas, dan selektor tag/pseudo-élémen.** Semakin spesifik selector, semakin tinggi prioritasnya. Jika dua atau lebih selector memiliki spesifisitas yang sama, maka yang terakhir ditulis akan diaplikasikan. Namun, penggunaan !important akan mengalahkan semua jenis selector lainnya kecuali inline style.
+
+# Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+Responsive design penting dalam pengembangan aplikasi web karena memungkinkan pengalaman pengguna konsisten di berbagai perangkat dan ukuran layar. Hal ini juga membantu dalam meningkatkan visibilitas di mesin pencari, memudahkan akses konten di berbagai platform, dan mendukung optimisasi SEO. Beberapa contoh aplikasi yang sudah menerapkan responsive design antara lain Facebook, Twitter, dan Instagram. Sebaliknya, beberapa situs web tua atau kecil masih menggunakan desain statis yang tidak fleksibel untuk berbagai ukuran layar sebagai contoh, yaitu https://myspace.com/ sebagai aplikasi yang belum sepenuhnya menerapkan responsive design.
+
+# Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+**Perbedaan**
+**Margin (marge):**
+Ruang kosong di luar elemen
+Tidak termasuk dalam ukuran elemen
+**Border (borders):**
+Garis batas fisik di sekitar elemen
+Bisa berupa garis, bayangan, atau teks
+Menambahkan ukuran elemen
+**Padding (padding):**
+Ruang kosong di dalam elemen
+Termasuk dalam ukuran elemen
+
+**Cara Implementasi:**
+Margin digunakan untuk jarak antar elemen
+Border menentukan batasan visual elemen
+Padding memberi ruang di dalam isi elemen
+.box {
+  margin: 20px; 
+  border: 2px solid black; 
+  padding: 10px; 
+}
+
+# Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+**Flex Box**
+Flex box adalah sistem layout satu dimensi yang dirancang untuk membuat baris atau kolom. 
+**Kegunaannya:**
+Mengatur elemen dalam satu baris atau kolom.
+Mudah digunakan untuk alignment vertikal dan horizontal.
+Ideal untuk layout kecil dengan beberapa baris atau kolom.
+Cocok untuk desain konten pertama, yaitu saat kita belum tahu pasti bagaimana konten akan terlihat.
+**Grid Layout**
+Grid layout adalah sistem layout dua dimensi yang dirancang untuk membuat layout kompleks dengan baris dan kolom simultan. 
+**Kegunaannya:**
+Membuat layout dua dimensi yang kompleks.
+Lebih cocok untuk desain konten yang lebih rumit.
+Ideal untuk membuat layout yang fleksibel dan responsif.
+Cocok untuk membuat layout yang lebih konsisten dan mudah dipahami.
+
+# Cara mengimplementasikan checklist 
+1. Tambahkan fungsi edit_thrift ke views.py lalu buat path URL untuk fitur edit product di urls.py.
+2. Tambahkan fungsi delete_thrift ke views.py yang menerima parameter request dan id, lalu buat path URL untuk fitur delete product di urls.py.
+3. Buat file HTML khusus untuk mengedit produk dan file HTML untuk navigasi (navbar).
+4. Konfigurasikan pengelolaan file statis di settings.py dengan menambahkan middleware WhiteNoise dan mengatur STATIC_ROOT, STATICFILES_DIRS, serta STATIC_URL.
+5. Tambahkan Tailwind CSS dengan membuat folder static/css/global.css dan menambahkan script Tailwind ke dalam base.html.
+6. Lakukan styling pada halaman login dan register agar lebih menarik.
+7. Lakukan styling pada tampilan halaman untuk membuat produk dan mengedit produk.
+8. Beri gaya pada elemen card info, card product, bagian utama, dan navbar.
+9. Langkah-langkah di atas mencakup pengembangan fitur baru, konfigurasi server, pengelolaan 😄
+
+
+
