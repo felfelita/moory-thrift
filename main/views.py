@@ -119,7 +119,7 @@ def add_thrift_entry_ajax(request):
     name = strip_tags(request.POST.get("name"))
     description = strip_tags(request.POST.get("description"))
     price = strip_tags(request.POST.get("price"))
-    condition = strip_tags(request.POST.get("conditon"))
+    condition = strip_tags(request.POST.get("condition"))
     user = request.user
 
     new_thrift = ThriftEntry(
