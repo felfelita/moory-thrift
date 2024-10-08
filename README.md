@@ -200,5 +200,30 @@ Cocok untuk membuat layout yang lebih konsisten dan mudah dipahami.
 8. Beri gaya pada elemen card info, card product, bagian utama, dan navbar.
 9. Langkah-langkah di atas mencakup pengembangan fitur baru, konfigurasi server, pengelolaan 😄
 
+# Tugas 6
+
+#  Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+JavaScript mempunyai banyak keuntungan dalam membuat aplikasi web. Pertama, ia bisa membuat situs web lebih interaktif dengan fitur seperti animasi dan efek visual. Kedua, JavaScript bisa mengurangi beban kerja server dengan mengerjakan tugas-tugas di sisi klien. Hal ini membuat situs web bekerja lebih cepat. Ketiga, JavaScript fleksibel dan bisa digunakan bersama dengan teknologi lainnya. Terakhir, karena mudah dipelajari, banyak orang bisa menggunakan JavaScript untuk membuat aplikasi web yang menarik dan berguna. 
+
+#  Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await? 
+Fungsi dari penggunaan await dengan fetch() adalah agar kode dapat menunggu sampai respons datanya selesai diterima sebelum melanjutkan eksekusi selanjutnya. Tanpa await, kode akan langsung melanjutkan tanpa menunggu, sehingga bisa menyebabkan masalah seperti:
+Menggunakan data yang belum lengkap atau tidak sesuai.
+Kesalahan dalam manipulasi data yang belum ada.
+Kode tidak berjalan seperti yang diharapkan karena menggunakan data yang belum diperoleh.
+Dengan await, kode dapat menunggu sampai fetch() selesai dan mengolah data yang sudah benar-benar diperoleh, sehingga menghasilkan output yang lebih akurat dan stabil.
+
+#  Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+CSRF (Cross-Site Request Forgery) proteksi yang bawaan Django tidak memperbolehkan request POST tanpa token CSRF.
+AJAX POST biasanya dilakukan dari halaman yang sudah memiliki token CSRF, tetapi token ini tidak dikirim dalam AJAX request.
+Menggunakan @csrf_exempt mengizinkan view untuk menerima request POST tanpa memerlukan token CSRF.
+Ini penting untuk views yang hanya digunakan oleh AJAX dan tidak perlu melibatkan CSRF proteksi.
+Namun, harus digunakan dengan hati-hati karena dapat membuat aplikasi lebih rentan terhadap serangan CSRF jika tidak diatur dengan benar.
+Dengan demikian, @csrf_exempt memungkinkan AJAX POST berjalan tanpa konflik dengan sistem CSRF Django, tetapi juga membutuhkan pengawasan tambahan untuk menjaga keamanan aplikasi.
+#  Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+Keamanan: Backend lebih aman daripada frontend untuk melakukan pembersihan data, karena backend tidak dapat diakses langsung oleh pengguna.
+Konsistensi: Pembersihan data dilakukan di satu tempat saja, yaitu backend, untuk menghindari kontradiksi antara frontend dan backend.
+Perlindungan dari XSS: Pembersihan di backend membantu melindungi dari serangan Cross-Site Scripting (XSS).
+Validasi tambahan: Backend dapat melakukan validasi tambahan yang lebih kompleks dan tidak terbatas oleh kemampuan JavaScript di frontend.
+
 
 
