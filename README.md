@@ -226,4 +226,16 @@ Perlindungan dari XSS: Pembersihan di backend membantu melindungi dari serangan 
 Validasi tambahan: Backend dapat melakukan validasi tambahan yang lebih kompleks dan tidak terbatas oleh kemampuan JavaScript di frontend.
 
 # Implementasi Checklist
+1. Menambahkan fungsi add_thrift_entry_ajax dalam views.py lalu menambahkan decorator @csrf_exempt dan @require_POST. Fungsi baru ini akan mengambil data dari request.POST, lalu menambahkan strip_tags untuk menghapus tag HTML dari variable name, description, price, dan condition, setelahnya akan disimpan ke database.
+2. Membuka urls.py dan melakukan routing fungsi add_thrift_entry_ajax dengan menambahkan path('create-thrift-entry-ajax', add_thrift_entry_ajax, name='add_product_entry_ajax') di urlpatterns.
+3. Melakukan modifikasi fungsi show_xml dan show_json pada views.py dengan menghapus product_entries = ThriftEntry.objects.filter(user=request.user), mengubah data = ThriftEntry.objects.all() pada fungsi show_json dan show_xml menjadi data = ThriftEntry.objects.filter(user=request.user)
+4. Membuat fungsi getProductEntries() untuk mengambil data dari /json, menggunakan fetch(),dan return data dalam bentuk JSON. 
+5. Membuat fungsi refreshProductEntries() untuk memanggil getProductEntries() dan mengubah data yang didapatkan menjadi HTML yang sesuai dengan design card. Menggunakan DOMPurify.sanitize() untuk membersihkan data name, price, description, dan condition dari input berbahaya
+6. Tambahkan elemen modal di main.html agar pengguna dapat menambahkan produk baru. Buat fungsi showModal() dan hideModal() untuk membuka dan menutup modal. Buat tombol Add Product by AJAX untuk membuka modal crudModal yang baru saja dibuat.
+7. Menambahkan fungsi addProductEntry() pada main.html untuk menangani penambahan produk menggunakan metode POST. Jika berhasil, panggil refreshProductEntries() untuk memperbarui daftar produk di halaman tanpa memuat ulang halaman. Tambahkan event listener submit pada form untuk menjalankan addProductEntry() setiap kali form disubmit.
+8. Menambahkan metode clean_name() dan clean_description() pada form. Kedua metode ini digunakan untuk memastikan bahwa input name dan description telah bersih dari karakter atau tag HTML yang tidak diinginkan. Jika input tidak valid, tampilkan pesan error yang sesuai.
+9. Menambahkan DOMPurify untuk membersihkan data di frontend agar input pengguna aman. Menambahkan script <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script> pada block meta di main.html. 
+10. Menggunakan DOMPurify.sanitize() pada variabel name, price, condition, dan description di refreshProductEntries() untuk membersihkan data sebelum ditampilkan.
+
+
 
